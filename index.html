@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f3e9">
+  <meta name="color-scheme" content="light">
+  <title>过年有招 · 返乡应答手册</title>
+  <style>
+    :root {
+      --paper: #f8f3e9;
+      --surface: #fffdf8;
+      --ink: #332b25;
+      --muted: #6f6054;
+      --red: #a3372a;
+      --line: #e9ddd0;
+      --tint: #faeee7;
+      --green: #38594d;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 3px solid #91682c; outline-offset: 3px; }
+    .shell { width: min(1112px, calc(100% - 64px)); margin: auto; }
+    .masthead { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 750; letter-spacing: .06em; }
+    .seal { display: grid; place-items: center; width: 33px; height: 33px; border-radius: 8px; color: white; background: var(--red); }
+    .seal svg { width: 21px; height: 21px; }
+    .offline { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+    .offline::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--green); }
+    .hero { isolation: isolate; position: relative; overflow: hidden; min-height: 230px; display: flex; align-items: center; padding: 29px 43px 32px; border-radius: 20px; background: #8c3026; color: #fff7e7; }
+    .hero-copy { position: relative; z-index: 1; max-width: 100%; }
+    .hero-tag { display: flex; align-items: center; gap: 9px; margin: 0 0 8px; color: #ffe0a9; font-size: .82rem; letter-spacing: .13em; }
+    .hero-tag::before { content: ""; width: 19px; height: 1px; background: currentColor; }
+    h1, h2, p { margin: 0; }
+    h1 { font-family: "Songti SC", "SimSun", serif; font-size: clamp(2.65rem, 5.5vw, 4.5rem); font-weight: 800; line-height: 1.13; letter-spacing: .04em; }
+    .hero-desc { margin-top: 12px; font-size: .97rem; line-height: 1.7; color: #fff2df; }
+    .hero-art { position: absolute; right: 0; bottom: 0; width: min(55%, 575px); height: 100%; }
+    .workspace { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 22px; align-items: start; margin-top: 26px; }
+    .scene-list, .detail { background: var(--surface); border: 1px solid var(--line); border-radius: 17px; }
+    .scene-list { padding: 15px 13px; }
+    .list-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 2px 8px 9px; }
+    .list-header h2 { font-size: 1rem; }
+    .count { color: var(--muted); font-size: .77rem; }
+    .scenes { display: grid; gap: 3px; }
+    .scene { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 46px; padding: 7px 9px; color: var(--ink); background: transparent; border: 1px solid transparent; border-radius: 9px; text-align: left; font-size: .88rem; }
+    .scene:hover { background: #f8f2ea; }
+    .scene[aria-current="true"] { border-color: #ebd4c6; background: var(--tint); color: #852d22; font-weight: 750; }
+    .number { display: grid; place-items: center; flex: 0 0 27px; height: 25px; background: #f3ebe0; border-radius: 6px; color: #705c4e; font-size: .68rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+    .scene[aria-current="true"] .number { background: #a3372a; color: white; }
+    .arrow { margin-left: auto; color: #927e70; font-size: 1rem; }
+    .detail { padding: 23px 27px 24px; }
+    .detail:focus { outline: none; }
+    .detail:focus-visible { outline: 2px solid #91682c; outline-offset: 4px; }
+    .eyebrow { color: var(--red); font-size: .77rem; font-weight: 750; letter-spacing: .12em; }
+    .detail h2 { margin-top: 3px; font-size: clamp(1.45rem, 3.3vw, 1.95rem); line-height: 1.35; }
+    .prompt { margin: 7px 0 17px; color: var(--muted); font-size: .87rem; }
+    .tones { display: flex; gap: 7px; margin-bottom: 8px; }
+    .tone { flex: 1; min-height: 40px; border: 1px solid var(--line); border-radius: 8px; background: #f9f4ec; color: #635348; font-size: .86rem; }
+    .tone:hover { border-color: #bb8b75; }
+    .tone[data-tone="proactive"] { border-color: #c58973; color: #8c372b; font-weight: 750; }
+    .tone[aria-pressed="true"] { background: #a3372a; border-color: #a3372a; color: #fff; font-weight: 750; }
+    .proactive-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-bottom: 8px; }
+    .proactive-options[hidden] { display: none; }
+    .strategy { min-height: 38px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--muted); font-size: .84rem; }
+    .strategy:hover { border-color: #bb8b75; }
+    .strategy[aria-pressed="true"] { border-color: #c58973; background: var(--tint); color: #852d22; font-weight: 750; }
+    .tone-hint { margin: 0 0 14px; color: var(--muted); font-size: .8rem; }
+    .replies { display: grid; gap: 13px; }
+    .reply { border: 1px solid var(--line); border-radius: 13px; overflow: hidden; }
+    .response { background: #fbf0e8; padding: 12px 17px; }
+    .response-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .label { color: #8c372b; font-size: .76rem; font-weight: 750; letter-spacing: .08em; }
+    .reply h3 { margin: 0; color: #8c372b; font-size: .82rem; font-weight: 750; }
+    .copy { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 4px 8px; color: #853125; background: #fffaf4; border: 1px solid #e8cbbb; border-radius: 7px; font-size: .76rem; white-space: nowrap; }
+    .copy:hover { background: #f8e0d4; }
+    .copy:focus-visible { outline-offset: 2px; }
+    .copy svg { width: 14px; height: 14px; flex-shrink: 0; }
+    blockquote { margin: 6px 0 0; font-size: clamp(1.02rem, 2.2vw, 1.24rem); font-weight: 650; line-height: 1.65; }
+    .status { font-size: .75rem; color: var(--green); }
+    .status span:not(:empty) { display: block; margin-top: 5px; }
+    .action { display: flex; align-items: flex-start; gap: 10px; padding: 10px 15px; border-top: 1px solid #dde5db; background: #f0f4ed; }
+    .action svg { width: 22px; height: 22px; flex: 0 0 22px; margin-top: 2px; color: var(--green); }
+    .action .label { color: var(--green); }
+    .action-text { margin-top: 2px; font-size: .88rem; }
+    footer { padding: 17px 0 24px; color: var(--muted); font-size: .77rem; }
+    footer details { margin-top: 6px; }
+    footer summary { cursor: pointer; }
+    footer details p { margin: 6px 0; }
+    footer ul { margin: 4px 0; padding-left: 22px; }
+    footer a { color: var(--red); }
+    @media (min-width: 641px) {
+      .scene-list { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow-y: auto; }
+    }
+    @media (max-width: 800px) {
+      .shell { width: calc(100% - 36px); }
+      .hero { min-height: 198px; padding: 24px 26px; }
+      .hero-art { opacity: .7; }
+      .workspace { grid-template-columns: 218px minmax(0, 1fr); gap: 13px; margin-top: 15px; }
+      .detail { padding: 17px; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: calc(100% - 28px); }
+      .masthead { padding: 12px 0; }
+      .hero { min-height: 166px; padding: 18px; border-radius: 14px; }
+      .hero-tag { font-size: .72rem; }
+      .hero-desc { font-size: .82rem; margin-top: 8px; }
+      .hero-art { width: 70%; opacity: .33; }
+      .workspace { grid-template-columns: minmax(0, 1fr); }
+      .scene-list { padding: 8px; }
+      .list-header { padding: 3px 5px 6px; }
+      .scenes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+      .scene { gap: 5px; padding: 4px; min-height: 44px; font-size: .77rem; }
+      .number { flex-basis: 23px; height: 23px; }
+      .arrow { display: none; }
+      .detail { scroll-margin-top: 10px; }
+      .tones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .tone[data-tone="proactive"] { grid-column: span 2; }
+      .tone, .strategy { min-height: 44px; }
+      .response { padding: 11px 13px; }
+      .copy { min-height: 44px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="brand">
+        <span class="seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>
+          </svg>
+        </span>
+        返乡应答手册
+      </div>
+      <span class="offline">离线可用</span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="hero-tag">春节回家 · 随手查</p>
+          <h1 id="page-title">过年有招</h1>
+          <p class="hero-desc">遇到难接的话，看看怎么回，<br>也看看接下来能做什么。</p>
+        </div>
+        <svg class="hero-art" aria-hidden="true" viewBox="0 0 580 250" preserveAspectRatio="xMaxYMax meet">
+          <defs>
+            <pattern id="windows" width="37" height="22" patternUnits="userSpaceOnUse">
+              <rect x="1" y="3" width="27" height="16" rx="4" fill="#9d4130"/>
+              <path d="M7 14l8-7m-2 9l8-8" stroke="#f2a570" stroke-width="1" opacity=".6"/>
+            </pattern>
+          </defs>
+          <circle cx="420" cy="86" r="63" fill="#e2a266" opacity=".9"/>
+          <circle cx="420" cy="86" r="74" fill="none" stroke="#f4c286" stroke-opacity=".45"/>
+          <path d="M75 169 173 111 221 138 318 76 419 138 493 100 580 142V250H75Z" fill="#a74732"/>
+          <path d="m27 206 95-38 52 13 82-41 82 38 67-24 74 17 101-39v118H27Z" fill="#b3573d"/>
+          <path d="M0 220c130-11 282-9 580 1v29H0Z" fill="#733027"/>
+          <path d="M14 228c182-9 384-7 566 0M29 237c172-10 360-7 551 0" stroke="#db9b68" stroke-width="1.2" opacity=".6" fill="none"/>
+          <g stroke="#f9d4a2" stroke-linecap="round" fill="none" opacity=".8">
+            <path d="M285 39h38m-26 7h39M490 57h57m-44 7h53M528 25h24M368 29v10m-5-5h10M503 102v12m-6-6h12"/>
+          </g>
+          <g transform="translate(76 166)">
+            <path d="M0 3h325c22 0 37 5 56 18l30 20c5 4 2 10-4 10H0Z" fill="#f8d8a4"/>
+            <path d="M0 37h398l13 9c2 3-1 5-5 5H0Z" fill="#bf603f"/>
+            <path d="M0 15h319v22H0Z" fill="url(#windows)"/>
+            <path d="M327 16h36c10 1 19 8 29 15h-53Z" fill="#934033"/>
+            <path d="M125 4v46m121-46v46" stroke="#a45b40" stroke-width="2"/>
+            <path d="M0 51h393" stroke="#52251e" stroke-width="3"/>
+          </g>
+        </svg>
+      </section>
+
+      <div class="workspace">
+        <nav class="scene-list" aria-labelledby="list-title">
+          <div class="list-header">
+            <h2 id="list-title">选个场景</h2>
+            <span id="scene-count" class="count"></span>
+          </div>
+          <div id="scenes" class="scenes"></div>
+        </nav>
+
+        <section id="detail" class="detail" aria-labelledby="scene-title" tabindex="-1">
+          <p id="scene-number" class="eyebrow"></p>
+          <h2 id="scene-title"></h2>
+          <p id="prompt" class="prompt"></p>
+
+          <div class="tones" role="group" aria-label="选择应答方式">
+            <button class="tone" type="button" data-tone="gentle" aria-controls="replies" aria-pressed="true">委婉说</button>
+            <button class="tone" type="button" data-tone="direct" aria-controls="replies" aria-pressed="false">直接说</button>
+            <button class="tone" type="button" data-tone="humor" aria-controls="replies" aria-pressed="false">幽默说</button>
+            <button class="tone" type="button" data-tone="followup" aria-controls="replies" aria-pressed="false">被追问</button>
+            <button class="tone" type="button" data-tone="proactive" aria-controls="proactive-options replies" aria-pressed="false" aria-expanded="false">主动出击</button>
+          </div>
+          <div id="proactive-options" class="proactive-options" role="group" aria-label="选择主动应对方式" hidden>
+            <button class="strategy" type="button" data-strategy="first" aria-controls="replies" aria-pressed="true">抢先开口</button>
+            <button class="strategy" type="button" data-strategy="turn" aria-controls="replies" aria-pressed="false">反客为主</button>
+          </div>
+          <p id="tone-hint" class="tone-hint"></p>
+          <div id="replies" class="replies"></div>
+        </section>
+      </div>
+      <noscript>请启用浏览器的 JavaScript，才能切换场景和查看应答。</noscript>
+    </main>
+    <footer>
+      <p>挑一句你说得出口的，按自己的情况改就好。</p>
+      <details>
+        <summary>网络灵感与场景参考</summary>
+        <p>话术参考了网上的反催婚段子和返乡采访，结合具体问法重新编写。</p>
+        <ul>
+          <li><a href="https://www.thepaper.cn/newsDetail_forward_16359968" target="_blank" rel="noopener">毕导 · 过年应对亲戚催婚的 50 种方法</a></li>
+          <li><a href="https://m.thepaper.cn/newsDetail_forward_32628616" target="_blank" rel="noopener">澎湃号·湃客 · 春节走亲戚，年轻人“反向教育”长辈</a></li>
+          <li><a href="https://www.xinhuanet.com/politics/2023-02/14/c_1129362477.htm" target="_blank" rel="noopener">新华网 · 年轻人为何不爱走亲戚了</a></li>
+          <li><a href="https://paper.people.com.cn/rmrbhwb/html/2015-01/09/content_1519161.htm" target="_blank" rel="noopener">人民日报海外版 · 年轻人的过年应对办法</a></li>
+          <li><a href="https://psy.china.com.cn/2026-02/13/content_43357598.htm" target="_blank" rel="noopener">中国网 · 春节暖心沟通指南</a></li>
+        </ul>
+      </details>
+    </footer>
+  </div>
+
+  <template id="reply-template">
+    <article class="reply">
+      <div class="response">
+        <div class="response-top">
+          <h3></h3>
+          <button class="copy" type="button">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="7" y="6" width="10" height="11" rx="1.5"/>
+              <path d="M13 4V3H3v11h2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            复制这句话
+          </button>
+        </div>
+        <blockquote></blockquote>
+        <p class="status" role="status"><span></span></p>
+      </div>
+      <div class="action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 5h14v14H5zM8 12l3 3 5-6"/>
+        </svg>
+        <div>
+          <p class="label">接下来可以做</p>
+          <p class="action-text"></p>
+        </div>
+      </div>
+    </article>
+  </template>
+  <script>
+    const scenes = [
+      {
+        title: '问工资和存款',
+        prompt: '亲戚问：“一个月挣多少？年终奖发了没？攒下钱了吗？”',
+        replies: {
+          gentle: [
+            ['被问月薪', '工作近况可以慢慢聊，工资我就不报数啦。您最近还忙吗？', '说完换一个具体话题，比如问对方年夜饭那道菜是怎么做的。'],
+            ['被问年终奖', '年终奖的事我就不细说了。今年倒是学会了不少新东西。', '准备一个能分享的工作小故事，说清楚做了什么就好。'],
+            ['爸妈担心你缺钱', '你们要是担心我钱够不够用，咱们吃完饭单独聊聊。', '私下说说近况和你是否需要帮忙，金额按自己愿意分享的程度说。'],
+          ],
+          direct: [
+            ['工资和存款都不公开', '工作近况可以聊，工资和存款是我的私事，我想自己留着。', '如果对方确实在关心你，可以分享一件最近做得顺利的工作小事。'],
+            ['别在饭桌上问', '这个话题我不想在饭桌上聊。大家先吃饭吧。', '把话题带回桌上，比如问要不要给大家再添点饭。'],
+            ['别转发我的收入', '这事我只跟您说过，麻烦您别往家族群里发。', '如果数字已经被发出，可以私聊发消息的人，请对方撤回。'],
+          ],
+          humor: [
+            ['工资保密，菜谱公开', '工资条不对外开放，红烧肉做法可以公开。您先教教我这盘怎么做的？', '夹一口菜，再问一个做法细节，让新话题接得上。'],
+            ['房东先领年终奖', '年终奖啊？房东比我着急，他连钱的去向都替我安排好了。', '适合熟人闲聊。有人接着问具体数字，就切到「被追问」。'],
+            ['存款还在长身体', '存款还在长身体，暂时不方便出来见亲戚。', '笑一下就停，顺手给大家添茶，把话题带过去。'],
+          ],
+          followup: [
+            ['“就告诉我一个人”', '我知道你关心我，具体数字我还是不聊。咱们说点别的吧。', '照原话再说一次就够了。对方还问，可以起身倒水，先离开话题。'],
+            ['“大概多少也行”', '大概的数我也不方便说。你要是想问我过得怎么样，这个可以聊。', '对方如果转问生活，你可以分享通勤、吃住或喜欢的日常。'],
+            ['“是不是挣得太少”', '多少我都不打算公开。咱们今天就聊到这儿吧。', '把手机里的工资单或账单收好，换个座位或去厨房搭把手。'],
+          ],
+          first: [
+            ['回家前｜请爸妈帮你挡一挡', '妈，今年要是有人问我工资，咱就说工作近况可以聊，数字不公开。你别替我报数哈。', '提前私聊爸妈，顺便约好谁来接话，别等有人问了再临时商量。'],
+            ['一进门｜先问对方擅长的事', '舅舅，新年好！听说你去年学会做腊肉了，哪天带我看看怎么熏的？', '换成对方确实爱聊的爱好，接着问一个细节，让对方有话可讲。'],
+            ['上桌前｜自己播报近况', '我先播个简版近况：今年换了个项目，最有意思的是第一次带新人。你们今年有啥新鲜事？', '用一个真实的小进展代替数字，接着点一位愿意分享的家人。'],
+            ['饭前｜和兄弟姐妹约好接话', '待会儿要是有人问咱工资，谁先被点到，另一个就接一句：今年过年有什么好玩的？', '把暗号和换过去的话题一起定下来。轮到对方时，你也替对方接一次。'],
+          ],
+          turn: [
+            ['笑着问回去｜谁在做背调', '您这是拜年，还是帮我做背调？要是拜年，我可先祝您财源广进了。', '适合熟人打趣。把祝福说完就转问对方今年有什么开心事。'],
+            ['认真问回去｜您想知道什么', '您问这个，是担心我钱够不够用，还是想了解我那行？这俩可以分开聊。', '让对方选一个方向。说生活或行业近况就好，具体金额自己留着。'],
+            ['把年终奖改成年度好物', '奖金金额我就不报了。不过我今年花得最值的是一双通勤鞋。您今年买得最值的是啥？', '先拿自己买过的一件小东西起头，接着聊使用体验，避免变成消费比价。'],
+            ['桌上有人爱问数字｜让他来猜菜', '工资数字跳过。您这么会估，要不先猜猜这桌一共包了多少饺子？', '等对方给个数，再请一起包饺子的人揭晓或加入竞猜。'],
+          ],
+        },
+      },
+      {
+        title: '劝回老家考编',
+        prompt: '爸妈说：“在外面租房图啥？回来考个编，离家近还稳。”',
+        replies: {
+          gentle: [
+            ['爸妈想让你离家近些', '我知道你们盼我离家近一点。我现在还有想做的事，今年打算先在这边干下去。', '如果爸妈主要是想多见你，可以当场约好下一次通话或见面的时间。'],
+            ['长辈发来招考消息', '谢谢您特地发我。我看到了，最近打算先把手头的工作做好。', '回一条简短消息说明目前的安排，后续就不用逐条讨论岗位。'],
+            ['家里担心工作不稳', '我知道你们怕我在外面不好过。真遇到变化，我会想办法，也会跟你们商量。', '你愿意的话，可以给爸妈讲讲自己已经考虑过的一个备选方向。'],
+          ],
+          direct: [
+            ['明确近期打算', '我目前没有回老家或考编的计划。工作上的决定，我想自己做。', '如果你愿意聊，简单说说目前留下的一个理由，比如手头的项目或发展机会。'],
+            ['拒绝代报名', '考试请先别替我报名。想考的话，我会自己了解岗位和要求。', '私下告诉帮忙张罗的人你的决定，请对方把尚未提交的报名停下来。'],
+            ['说清为什么还租房', '现在租房能让我住得离工作近一些。我有自己的安排。', '若对方有兴趣了解，可以讲通勤时间。租金和工资按你愿意的程度分享。'],
+          ],
+          humor: [
+            ['只考眼前这道题', '我现在就想过一门考试：妈，你这锅排骨怎么做的？我申请补课。', '适合爸妈随口提的时候，接下来真问一个步骤或进厨房帮忙。'],
+            ['先过春运这一关', '我刚从春运考场出来，跨城换乘那题差点没及格。让我先吃口热饭。', '接着讲一件路上的小插曲，给大家换个可以一起聊的话题。'],
+            ['家里已有编制', '咱家洗碗岗我都在编了，今晚还得按时到岗。', '起身把碗收了。要是家人真想聊就业，饭后再单独谈。'],
+          ],
+          followup: [
+            ['又劝你回乡', '你们的建议我听到了，回不回去我会自己决定。今天先聊到这儿吧。', '把话题先放下。若父母真正担心的是养老或照应，另找时间单独聊那件事。'],
+            ['“先报一个试试”', '我知道你是好意，不过我这次不报名。也请别替我答应别人。', '如果亲戚已联系了别人，让牵线的人尽早把你的决定传达过去。'],
+            ['每次通话都在劝', '我们每次一聊工作就绕到这儿。我愿意聊近况，这个决定先不反复讨论了。', '把下一次通话约在有具体话题的时候，比如一起看看家里的照片。'],
+          ],
+          first: [
+            ['见面第一天｜先交代你的安排', '爸妈，我先跟你们说一声，今年我还在现在的城市工作。要是你们有需要我搭手的事，咱们另挑时间聊。', '在没有旁人时先把工作安排说清，再约一个方便谈家里事务的时间。'],
+            ['过年前｜提前拦住代报名', '最近要是有人发招考链接，先别替我报名，也不用帮我找人。我有打算会自己办。', '给常帮你张罗的家人单独发一条消息，让他们知道怎么回复亲戚。'],
+            ['开饭前｜先问父母真正担心什么', '爸，你上次说想让我离家近点。我想先问问，是怕我工作累，还是家里有件事需要我？', '听完先复述对方最在意的一件事，再围绕那件事说能做到什么。'],
+            ['节前｜先把见面排进日历', '我先报个行程：春节这几天我回来，过完年咱们再挑个周末见。你们想我回来，还是想来我那儿看看？', '给出你做得到的两个时间。一起定一个，避免把想见面变成劝换工作的谈话。'],
+          ],
+          turn: [
+            ['一提稳定｜请对方说清是哪一种', '您说的稳，是收入有着落，还是离家近好照应？我想先听您最在意哪个。', '只接对方选的那一点。比如要是担心照应，就聊需要什么帮助。'],
+            ['一提岗位｜把建议问具体', '您说的是哪类工作？平时主要做什么？我想先听听实际的一天怎么过。', '问职责和作息即可。要是你没兴趣申请，就直接说你是在了解。'],
+            ['熟人玩梗｜请推荐个真岗位', '有春节吃饭岗吗？要求是坐下就能上岗，试用期最多一碗汤。', '玩笑说完就去盛汤。对方认真聊工作时，说明你目前的真实安排。'],
+            ['“在外租房图啥”｜问当年的选择', '我图离单位近。您当年选第一份工作的时候，最看重的是哪一条？', '先听对方讲一个具体经历，再分享自己现在最看重的条件。'],
+          ],
+        },
+      },
+      {
+        title: '和同龄人比较',
+        prompt: '亲戚说：“你表弟都买房了，你同学也升主管了。”',
+        replies: {
+          gentle: [
+            ['听说表弟买房', '挺替他高兴的。我这阵子也在忙自己的事，有空再跟您慢慢聊。', '只讲一个你愿意分享的近况，然后把话题转回大家都能参与的事。'],
+            ['听说同学升职', '那挺好的。我们做的事不太一样，我现在更想把手头的事做好。', '可以分享一个自己满意的小进展，让对话从排名回到近况。'],
+            ['表弟本人也在桌上', '这事值得替他高兴。对了，你上次说要出去玩，后来去哪儿了？', '问当事人一个与成绩无关的问题，等他自己决定要不要继续聊买房。'],
+          ],
+          direct: [
+            ['说出你不舒服', '他们有他们的安排，我有我的。拿我们比，我听着不太舒服。', '说完停一停，给对方换话题的机会。你可以接着聊假期怎么安排。'],
+            ['饭后和爸妈单独说', '你们要是担心我，可以直接问我。拿别人来比，我听了反而不想聊。', '饭后找个没人旁听的地方，用刚才发生的一句话举例。'],
+            ['护一下被比较的人', '咱们都在这儿呢，别把谁拿来给谁当例子了。各有各的日子。', '转问大家都能答的事，比如明天去哪儿逛或饭后想玩什么。'],
+          ],
+          humor: [
+            ['退赛声明', '还有排名啊？那我申请退赛，继续当年夜饭观众。', '说完给当事人夹菜或道个喜，让大家知道你在调侃比较这件事。'],
+            ['本人另有专长', '他升主管了，恭喜！我也有进步，去年包的饺子一煮全开，今年还有几个活着。', '接着把饺子端上来，或者请大家看看谁包得最像元宝。'],
+            ['只有这项参加评比', '买房升职我都不参赛。要是评谁最会收剩菜，我可以争取一下。', '拿个保鲜盒去收菜，用手头的小事把话题接走。'],
+          ],
+          followup: [
+            ['比较一轮又一轮', '这事我不想比。咱们先聊到这儿，我出去走两步。', '真的离席几分钟。回来后坐到聊得来的人旁边，换一拨人说话。'],
+            ['“比一下怎么了”', '我听得出你想激励我，但这样讲我不舒服。咱们换个话题吧。', '话说完就停，等大家换话题，再决定要不要留下来聊。'],
+            ['群里点名比较', '别拿我和他一起排名啦。他的好消息我单独去祝贺。', '在群里简短回应即可。想祝贺的话，就给当事人单独发条消息。'],
+          ],
+          first: [
+            ['饭前｜把“别人家孩子”挡在门外', '待会儿要是聊到表弟买房，咱就大方祝贺他，别顺手把我也放进排行榜。', '先跟最爱拿你比较的家人私下说，给对方一句现成的祝贺话。'],
+            ['大家刚坐下｜先报一个开心事', '我先分享件小事：今年学会做我妈那道菜了。你们今年学会了什么以前不会的？', '先说一件真实的小成就，点一位愿意分享的人接话。'],
+            ['见到同龄人｜先单独道喜', '听说你搬新家了，真替你高兴！一会儿要是有人开始排座次，咱俩就聊点好玩的。', '见面先问候当事人，再约一个共同喜欢的话题，比如旅行或球赛。'],
+            ['开席｜换一个人人都能参加的问题', '今天我出一道题：今年最想再来一遍的是哪一天？我先讲我的。', '先说自己的一小段经历，给不想说的人跳过的空间。'],
+          ],
+          turn: [
+            ['拿表弟当范例｜让本人决定说不说', '听着挺棒。表弟，要是你乐意讲，我倒想听听你搬进去后最满意的是什么。', '把话交给当事人。对方不想聊房子就换一个轻松的问题。'],
+            ['硬要比高低｜请对方先定规则', '真要排名的话，是按房本、按工牌，还是按今天给全桌倒茶的次数？最后这个我能争一下。', '熟人听得进玩笑时说，随后给桌上添茶，让大家有个新话题。'],
+            ['“你得学学他”｜请点明值得学的事', '您具体是想让我学他哪一点？要是说他做事有条理，这个我愿意听。', '只接能用得上的建议。对方又转到金额或地位时，就结束比较。'],
+            ['当众被对比｜问他对你的真实看法', '要是您想说我哪里可以改，能不能直接说我做的那件事？咱先把别人名字拿掉。', '请对方举一件你做过的事。饭桌上不便细谈，就留到饭后私聊。'],
+          ],
+        },
+      },
+      {
+        title: '催婚和相亲',
+        prompt: '长辈问：“有对象了吗？我给你介绍一个，你去见见？”',
+        replies: {
+          gentle: [
+            ['长辈随口问对象', '谢谢你想着我。我想按自己的节奏来，有想分享的消息我会告诉你。', '如果有人已经在张罗，提前私下说清楚你是否愿意见面，避免临时被叫去。'],
+            ['有伴侣但暂时没婚期', '我们相处得挺好，婚期还没定。真定下来了，我们会自己告诉大家。', '两人先说好哪些信息可以聊，饭桌上就不用临时互相看眼色。'],
+            ['愿意听介绍，想自己决定', '您可以先跟我说说大概情况。我听完再想要不要认识。', '请介绍人先把情况私下发你，见面和交换联系方式等你答复。'],
+          ],
+          direct: [
+            ['拒绝相亲和转联系方式', '我现在不安排相亲。也请先问过我，再把我的联系方式给别人。', '让最常牵线的家人知道这条边界。如果已经有约，尽早请介绍人代为取消。'],
+            ['突然被叫去见人', '我事先没答应这次见面，今天就不去了。下次请先跟我商量。', '先让介绍人通知对方取消。若对方已经来了，可以礼貌打个招呼再离开。'],
+            ['不想公开感情近况', '感情的事我想自己留着。亲戚群里也请别替我发消息。', '和最容易代你宣布的人私下说一遍，明确哪些内容别转发。'],
+          ],
+          humor: [
+            ['对象先换成糖醋鱼', '对象还没定，今晚最合我眼缘的是那盘糖醋鱼。再不夹就没了。', '把话题接到菜上，比如问谁做的，顺手给对方也夹一块。'],
+            ['待办事项只剩吃饭', '恋爱待办放年后，年夜饭待办现在完成。劳驾，把那盘虾转过来。', '适合能接住玩笑的人。笑完继续吃饭，别随口答应一个相亲日期。'],
+            ['节目暂未定档', '婚礼节目暂未定档。春节特别节目已经开播，咱先吃饺子。', '开完玩笑就把话题交还给饭桌，比如招呼大家趁热吃。'],
+          ],
+          followup: [
+            ['问了几遍还在问', '这件事我已经说清楚了，今天就不继续聊了。咱们先吃饭吧。', '把注意力转回饭桌。提前跟信得过的人打声招呼，请对方在需要时帮你接个话。'],
+            ['“就加个微信”', '加微信我也想自己决定。请先别把我的号码给对方。', '如果号码已发出，明确告诉介绍人你不参加，也可以按需要处理好友申请。'],
+            ['“你什么时候给个准话”', '我现在能给的准话，就是没有定时间。有计划了我会亲口告诉你。', '重复这句话即可。对方开始猜日期时，可以结束这段对话，过会儿再回来。'],
+          ],
+          first: [
+            ['回家前｜把相亲规则发出去', '妈，我今年回来想好好吃几顿饭。先说一声，相亲别替我约，联系方式也别先发出去。', '把消息发给最可能牵线的人，请对方确认已经看到。'],
+            ['听说有人张罗｜你先去问', '听说有人想介绍对象给我。见面之前请先跟我说，我同意了你们再安排。', '私下问清是否已经约时间。有安排但你不愿意去，就请介绍人尽早通知对方。'],
+            ['饭前｜先把婚恋话题放下', '我先声明一下，今天只讨论吃什么、去哪儿玩。感情近况有想分享的，我自己说。', '适合家里说话直来直去的场合。说完马上问大家想去哪里走走。'],
+            ['一进门｜请长辈讲旧照片', '姨，我带了张老照片回来。你给我讲讲这张在哪儿拍的？我一个人都认不全。', '准备一张对方愿意聊的照片，问人、地点和当时发生的事。'],
+          ],
+          turn: [
+            ['催婚问回去｜您担心的是啥', '您这么着急，最怕我遇到什么事？您真要聊，我想先听听这个。', '适合认真关心你的长辈。把谈话转到具体担心的事，再说你的打算。'],
+            ['月老兼职｜请先做介绍', '您这月老都兼职到春节了？先讲讲你怎么认识对方的，别上来就给我排班。', '愿意了解再问背景。不想相亲时，就接一句“听故事可以，见面先不约”。'],
+            ['婚期反问｜谁把请柬印了', '您这都问到婚期了，是谁把请柬印了还没告诉我？我本人先报个平安：还没定。', '适合能接住玩笑的亲戚。说完就邀请大家聊今年的聚会怎么安排。'],
+            ['让长辈做前辈｜请讲相处经验', '您觉得两个人过日子，最难磨合的是哪件事？这个比问我哪天结更值得聊。', '听对方讲一件自己愿意分享的经历。涉及私事时，留足不回答的空间。'],
+          ],
+        },
+      },
+      {
+        title: '催买房买车生娃',
+        prompt: '亲戚问：“什么时候买房买车？结了婚怎么还不打算要孩子？”',
+        replies: {
+          gentle: [
+            ['什么时候买房', '我想先住一段时间，看看自己以后想在哪儿生活。房子的事慢慢来。', '如果家人愿意聊，可以说说你在意的通勤、生活便利或居住需求。'],
+            ['什么时候买车', '平时出门还挺方便的，等真有需要，我再看怎么买合适。', '把问题转到实际用途，比如平时谁会用、去哪里，有需要再细聊。'],
+            ['什么时候要孩子', '谢谢惦记。孩子的事我们会自己商量，有想分享的消息再说。', '和伴侣先说好由谁来答。对方问到身体细节时，可以一起结束话题。'],
+          ],
+          direct: [
+            ['不想在饭桌上谈房车', '房车我有自己的安排，具体预算也先不聊。', '如果亲戚接着推楼盘或车型，可以只说暂时不考虑，结束这个话题。'],
+            ['生不生自己决定', '生不生、什么时候生，这些我想自己决定，也希望大家别再打听了。', '要是对方问到身体或备孕情况，可以明确说那些是私事。'],
+            ['被催二胎', '要不要再生，我们会按自己的情况考虑。请别在孩子面前一直问。', '如果小孩就在身边，把话题转向孩子正在做的事，或者带孩子去玩。'],
+          ],
+          humor: [
+            ['先买得起菜', '房子还在看，菜篮子已经拿下。今天这桌菜倒是可以立刻交付。', '适合用在闲聊里。顺势端菜或问吃完去哪儿散步。'],
+            ['家里车已到位', '车有啊，家里那辆买菜小拉车归我开。后备厢刚好装两颗白菜。', '说完可以顺手问家里还缺什么菜，把话题转到今天。'],
+            ['带娃排班表', '先别排二胎的档期，咱们今天谁陪老大拼乐高还没排出来呢。', '适合孩子在场且大家愿意陪玩时，接着邀请愿意的人一起玩一会儿。'],
+          ],
+          followup: [
+            ['被要求给个期限', '这个话题我先打住，具体时间也不用替我排。来，咱们聊聊这几天去哪儿玩。', '饭桌上话题转不开时，可以先帮着收拾碗筷，给自己一个停顿。'],
+            ['“再不买就晚了”', '我听到了，最后还是得按自己的情况定。今天就不讨论买房时间了。', '别急着争论市场。想了解对方的经验，可以改天专门聊当年怎么选房。'],
+            ['“我们帮你带，你就生吧”', '我知道你是想帮忙。要不要孩子这件事，我们自己定，今天先不聊了。', '如果对方继续追着问，可以和伴侣一起暂时离桌，回来聊别的。'],
+          ],
+          first: [
+            ['开饭前｜先告诉家人哪些事别问', '今天人多，房子、买车、孩子的事都先别替我们提。有想分享的进展，我们自己开口。', '先跟常带话题的家人说一句。如果和伴侣同去，约好谁来接话。'],
+            ['看房前｜主动提实际需求', '妈，我先跟您说说我现在在意什么：住得离单位近，下班能有时间吃口热饭。您以前挑住处最看重啥？', '挑自己愿意聊的两个条件，不想谈的价格或日期可以留到以后。'],
+            ['拜年前｜先约好不当着孩子说', '今年要是谁问二胎，咱们就说大人的安排大人自己商量，别在孩子跟前讨论。', '把这句话先告诉家里常聊天的几个人，顺便定好孩子在场时可以聊的话题。'],
+            ['出门前｜把买车话题换成行程', '今天出门我先把路线看好了，咱们坐地铁直达。要买车我会先想清楚平时怎么用。', '把集合点和回程方案发群里，让大家先聊今天怎么走。'],
+          ],
+          turn: [
+            ['“赶紧买房”｜问住进去后的感受', '您当年买房时最在意什么？住进去以后，有哪一条跟想的不一样？', '问一段实际体验。要是又被追问下单时间，就说目前只想听经验。'],
+            ['“没车多不方便”｜问最需要的那趟', '您觉得我哪一趟最需要车？咱们先拿那趟算算，看看开车、打车还是地铁合适。', '只讨论一个你确实会遇到的行程，别被带着当场看车或作决定。'],
+            ['“什么时候生”｜把时间表推回去', '您这是给我排项目进度呢？排期表先收一收，今天能定的是饭后谁洗碗。', '适合能接玩笑的熟人。若对方认真追问，就直接说明生育是私事。'],
+            ['“生了我们帮带”｜先接住眼下的好意', '您愿意搭把手我挺感激。真想帮忙的话，今天要不要陪老大看一会儿绘本？', '家里已经有孩子时才用。尊重对方答应或拒绝，之后把话题留在眼下。'],
+          ],
+        },
+      },
+      {
+        title: '饭局和人情开销',
+        prompt: '饭局撞在一起，有人劝酒，礼品和红包也越算越多。',
+        replies: {
+          gentle: [
+            ['想少参加一场', '这几天我想留点时间陪家里，这场就先不参加了。咱们过完年再约。', '出门前圈出最想参加的聚会，提前告诉组局的人哪天能到。'],
+            ['茶代酒', '今天我喝茶，咱们一样碰个杯。祝大家新年顺顺利利。', '开饭前把茶倒好。有人敬酒时，可以主动举起自己的杯子。'],
+            ['想把礼送轻一点', '我们就带点大家能一起吃的，别特地给我准备回礼啦。', '挑一份愿意承担的礼物，事先问一句家里缺不缺，省得买重复。'],
+          ],
+          direct: [
+            ['饭局撞期', '这顿我来不了，你们按原计划聚，别给我留位。', '尽早在群里确认缺席，好让组织的人调整人数。'],
+            ['红包不跟着加', '我按自己定的金额包，就不跟着加了。大家各按各的安排来。', '把路费、礼品和红包分别记下来，出门前按你定的金额准备。'],
+            ['聚会费用先说好', '我可以参加。订桌前先说一下人均大概多少，我好安排。', '在群里确认是否分摊、哪些项目另算。超出预算时尽早告知对方。'],
+          ],
+          humor: [
+            ['饭局已超载', '我的胃今年只接两单，第三单再排就得叫售后了。咱们改天约个茶？', '确认自己真能参加的场次，给熟人一个可行的改约时间。'],
+            ['茶水选手', '我今天参加的是茶水组，举杯动作跟你们一个标准。来，碰一下。', '拿自己的杯子主动碰杯。要是有人往杯里倒酒，可以直接把杯子拿开。'],
+            ['红包预算有席位', '我家红包席已经满桌了，再加一位就得去隔壁桌找预算。', '熟人之间说笑后，按原先准备好的金额发，不在桌上讨论谁包多少。'],
+          ],
+          followup: [
+            ['“就喝一口”', '谢谢你敬我，我今天不喝酒。这杯我用茶敬你。', '手边留一杯自己选的饮料。对方继续劝时，重复原话，必要时换座或早点走。'],
+            ['“不来就是不给面子”', '谢谢你还想着我，这回我确实到不了。你们好好玩，改天我再约你。', '私下给组织者发条拜年消息，之后按约好的时间联系。'],
+            ['“大家都包这么多”', '我知道你们有你们的安排，我这份按自己的预算来，金额就不比了。', '如果有人要现场凑份子，可以先问清楚用途，再决定是否参加。'],
+          ],
+          first: [
+            ['群里组局前｜你先定一个能赴的约', '我初三下午有空，咱们喝个茶？我五点得走，晚饭我就不接着约了。', '给一个你能到的时段和结束时间。有人提别的时间时，看自己有没有余量。'],
+            ['点菜前｜你先问清费用', '订桌前咱先说下预算吧。酒水另算吗？我想先弄清楚再确定人数。', '在群里把怎么付和是否包含酒水问清楚，再回复是否参加。'],
+            ['第一杯｜自己带头敬茶', '来，我先用茶敬大家一杯。今天我就喝这个，祝咱们新年顺顺当当。', '上桌先给自己倒茶，举杯前把饮料选定，免得别人替你倒酒。'],
+            ['红包开始发之前｜先商量做法', '我今年想给孩子们准备一样的小红包，金额咱们各按各的，就不现场对数啦。', '先和一起发红包的家人说清楚做法，提前把红包分别装好。'],
+          ],
+          turn: [
+            ['一被劝酒｜请他来帮你倒茶', '您既然今天负责照顾我这杯，那帮我添点茶吧。我用这杯回敬您。', '把自己的茶杯递过去或请人递茶壶，对方不愿意时就自己倒。'],
+            ['“喝了才有诚意”｜换个诚意比法', '那我换个实在的：酒我不喝，这盘虾我给全桌剥一只，诚意现场验收。', '适合熟人打趣。手边有什么方便分享的小事，就把虾换成那件事。'],
+            ['被拉去赶第二场｜让对方二选一', '第二摊我不去了。你是想现在再聊十分钟，还是改天咱俩单约？', '按你能给出的时间提选项，到约定的时间就告辞。'],
+            ['起哄红包加码｜问能不能换个玩法', '今年就别给红包搞竞价了。真想热闹，咱们让孩子抽一张新年祝福？', '用纸写几句祝福现场抽，原先准备好的红包照自己的金额发。'],
+          ],
+        },
+      },
+      {
+        title: '回家又被当小孩管',
+        prompt: '家里人问：“怎么还没起？今晚几点回来？怎么又关着门？”',
+        replies: {
+          gentle: [
+            ['早晨想睡够', '我这几天想补补觉。明早你们先吃，不用等我，我起来陪你们吃午饭。', '提前约好一家人都方便的一顿饭，给睡觉、独处或见朋友留出明确的时间。'],
+            ['想一个人待会儿', '我有点累，先安静一会儿。等会儿我出来陪你们看电视。', '给家人一个大概出来的时间，避免彼此猜测你是不是生气。'],
+            ['被提醒多穿衣服', '知道你怕我冷，我带着外套呢。冷了我就自己加上。', '把要带的衣服装好，准备出门时让家人知道你已经想到了。'],
+          ],
+          direct: [
+            ['自己安排作息', '我想自己安排几点起、几点出门。今晚如果回来得晚，我会发条消息。', '出门前说一下大概归家时间。有变化就发一条简短消息，省得家人一直等。'],
+            ['进门前先敲门', '我关着门的时候，麻烦先敲一下，等我应了再进。', '找个平静的时候提这条具体约定。遇到忘记敲门，再简短提醒一次。'],
+            ['不想交代朋友的事', '我出去见朋友，晚饭前回来。和谁见面、聊什么，我想自己留着。', '把真正影响家里安排的时间告诉对方，其他细节自己决定说多少。'],
+          ],
+          humor: [
+            ['开机时间顺延', '本机在外地连续运行了一年，春节首次开机顺延到午饭前。', '适合家人开玩笑叫起时用。要是真约了饭，就在约好的时间出来。'],
+            ['关门充电中', '门一关就进入省电模式，充到百分之八十我就出来剥橘子。', '说完给个能做到的时间，比如半小时后，让家人知道什么时候再聊。'],
+            ['外套有备份', '放心，薄的穿身上，厚的在包里，保暖这事我做了双备份。', '用在你确实带了备用衣服的时候。接着说一下出门多久，别让人干等。'],
+          ],
+          followup: [
+            ['一直喊你出来', '我听见了。我想先自己待半小时，等会儿出来，我们再聊。', '告诉对方你什么时候出来，再找个能安静一会儿的地方。到点按约定露个面。'],
+            ['回家晚被连环问', '我到点会报平安。现在我和朋友在一起，回去以后咱们再聊。', '发一条你预计到家的时间。如果行程变了，再补一条消息。'],
+            ['“你怎么还是不听话”', '我知道你是担心我。这件事我已经想好了，今天我会照自己的安排来。', '若彼此语气都上来了，可以先停一会儿，等平静后再谈具体安排。'],
+          ],
+          first: [
+            ['前一晚｜先说起床时间', '我明早想睡到九点半，早餐你们先吃。十点我出来陪你们买菜，行吗？', '定一个你能做到的起床时间，再约一件起床后能一起做的事。'],
+            ['出门前｜主动发一条报平安计划', '我今晚出去见朋友，大概十点回来。时间要是变了，我会提前发消息，你们不用等门。', '出门前把消息发给会等你的人，回程有变化时再更新一次。'],
+            ['准备关门｜先打招呼', '我先关门歇一会儿，六点出来帮忙摆桌。有急事先敲一下门。', '提前把你能出来的时间告诉家人，到点记得去摆桌。'],
+            ['同住前｜主动分配家务和空闲', '这几天碗我负责洗，买菜我也能搭手。下午那两个钟头我想自己安排，可以吧？', '把你会承担的家务和需要保留的时间一起说清，双方都好排事。'],
+          ],
+          turn: [
+            ['“怎么还不起”｜把叫早变成约时间', '您是现在需要我帮忙，还是怕我错过早饭？要帮忙我起来，早饭我就晚点吃。', '听清是不是有要紧事。没事就约定什么时候出来，然后照约定做。'],
+            ['“怎么又关门”｜请对方直接说要什么', '你现在是想叫我搭把手，还是想我陪你说会儿话？我好安排什么时候出来。', '分清急事和陪伴。能晚点再做的事，就约一个具体时间。'],
+            ['“穿少了”｜幽默请他做天气预报', '收到家里气象台提醒！今天最冷的是哪会儿？我把厚外套留到那时候穿。', '适合随口提醒时用。要是家人还一直催，就说你会按体感加衣。'],
+            ['连环问行踪｜把问题变成一项约定', '你最想知道的是我几点到家，对吧？咱们就约好到家发个消息，别一路问到哪了。', '把你能做到的报平安时间约清楚。遇到变化时主动告知。'],
+          ],
+        },
+      },
+      {
+        title: '返乡奔波和陪伴',
+        prompt: '车票难抢，来回又耗时间。刚到家就有人问：“这次能多住两天吗？”',
+        replies: {
+          gentle: [
+            ['在家待得短', '这次在家时间有点短。我想挑一顿饭咱们好好吃，饭后再一起出去走走。', '先把返程当天留给赶路，再提前约定一段能专心陪家人的时间。'],
+            ['堵在路上赶不上饭', '你们先吃，别等我。我到了给你们打电话，晚点咱们再坐下来聊。', '在能安全发消息的时候，把预计到达时间发给家人，请他们按原时间开饭。'],
+            ['这次确实回不去', '这趟我赶不回来，挺想你们的。咱们年夜饭前视频一会儿，好吗？', '约好双方都方便的时间。条件合适的话，再约个节后见面的周末。'],
+          ],
+          direct: [
+            ['返程日不再排局', '返程那天我得留足时间去车站，就不再安排走亲戚了。咱们把见面的时间往前挪吧。', '把返程车次和出门时间发给家人。买票前也可以备一条转车路线。'],
+            ['想留半天陪爸妈', '拜年我能去一趟，下午想留在家陪你们。其他几家咱们打个电话吧。', '提前和父母把行程圈出来，留下明确的一段空白时间。'],
+            ['请家人别大老远接站', '这趟我自己打车回去，你们就在家等我，省得来回跑。上车我发消息。', '出站前确认好上车点，到了再发一条报平安的消息。'],
+          ],
+          humor: [
+            ['春节特快限时停靠', '春节特快在老家只停三天，重点项目是陪你们吃饭，其他站咱就少停两个。', '跟家人选出最想一起吃的一顿，提前说好哪天别排别的局。'],
+            ['火车不吃这套', '我也想续住两天，可火车这位房东不让续租。出发前咱再吃顿热乎的。', '适合车票已定时用。接着约一个确实来得及吃饭的时段。'],
+            ['堵车只准更新进度', '我和行李都在路上，目前最大的进展是前面那辆车终于动了。你们先开饭。', '只有停车安全或作为乘客时再发消息。行程变了就更新大概到家时间。'],
+          ],
+          followup: [
+            ['“能不能再多住两天”', '我也舍不得走，这次假期就到这儿。等我到家报个平安，下周找个晚上咱们视频。', '离家前定好下一次通话时间。遇到晚点或行程变动，先把新的到达时间告诉家人。'],
+            ['“那你干脆改签”', '我已经按上班时间定好车票了，这次先按原计划走。咱们今晚多坐一会儿。', '把车次和留给路上的时间说清楚，再确认今晚还能安排什么。'],
+            ['“回来都没陪我们”', '这几天确实排得有点满。今晚我不出门了，咱们一起吃饭，慢慢聊。', '如果你确实有空，取消一个可以改约的饭局，把时间完整留给家里。'],
+          ],
+          first: [
+            ['买到票就说｜先把相聚时间锁住', '车票定了，我周五晚上到、周一早上走。周六中午先留给咱们一起吃饭，好不好？', '把真实车次发给家人，同时确认哪一段时间专门留给彼此。'],
+            ['进家门｜先点一道想一起做的菜', '妈，这次我回来最想跟你学包饺子。明天下午你教我，咱先别排别的事？', '问清对方什么时候方便，留一段完整时间，一起买菜或准备食材。'],
+            ['票难抢｜早点说备选安排', '这趟直达还没票。我先看能不能转车，今晚给你们准信。真赶不上，咱们先约视频。', '设个能做到的确认时间，同时看转乘和节后再见的可行方案。'],
+            ['离家前｜先约下次见面', '我临走前想把下次见面也约了。你们想等我回来，还是挑个周末来我那儿住两天？', '听对方的体力和时间安排，再提出一个彼此都方便的日期。'],
+          ],
+          turn: [
+            ['“怎么这么快就走”｜让对方选最想做的事', '车票已经定了。临走前我还能空半天，你想一起吃顿饭，还是去逛你常去的那条街？', '给两个在时间上真能做到的选项，选好后别再把别的活动挤进来。'],
+            ['亲戚都想见｜把多趟变成一场', '一家家跑我这趟来不及。谁愿意一起吃午饭？咱找个大家方便的地方，一次见个面。', '先问谁有空，再决定地点。来不了的人单独发个问候。'],
+            ['“一定要去接你”｜请他把劲用在家里', '您别在车站吹风啦。真想帮我，就把想吃的菜告诉我，我到家路上顺手买。', '明确自己怎么回家和预计时间。下车后主动报一声，别让家人干等。'],
+            ['返程日又排饭局｜你来出一道选择题', '现在有两个选项：我卡着点赶车，或者咱们今晚先痛快吃一顿。我投第二个，你们呢？', '适合能改约时用。把约好的吃饭时间和实际出门时间都说清楚。'],
+          ],
+        },
+      },
+    ];
+
+    const sceneList = document.getElementById('scenes');
+    const detail = document.getElementById('detail');
+    const sceneNumber = document.getElementById('scene-number');
+    const sceneTitle = document.getElementById('scene-title');
+    const promptEl = document.getElementById('prompt');
+    const replies = document.getElementById('replies');
+    const replyTemplate = document.getElementById('reply-template');
+    const toneHint = document.getElementById('tone-hint');
+    const toneButtons = Array.from(document.querySelectorAll('.tone'));
+    const proactiveOptions = document.getElementById('proactive-options');
+    const strategyButtons = Array.from(proactiveOptions.querySelectorAll('.strategy'));
+    const toneHints = {
+      gentle: '给对方留个台阶，顺势把话题带开。',
+      direct: '适合需要把自己的打算或边界说清楚的时候。',
+      humor: '适合熟人闲聊。对方还在认真追问时，可以换成「被追问」。',
+      followup: '第一句没挡住时，挑一句重申边界或结束话题。',
+      first: '在进门、上桌或邀约之前先开口，把话题和安排定下来。',
+      turn: '对方一开口，你就接过话头。可以俏皮反问，也可以请对方说经验或帮一个具体的忙。',
+    };
+    let sceneIndex = 0;
+    let tone = 'gentle';
+    let strategy = 'first';
+
+    const replyCount = scenes.flatMap(scene => Object.values(scene.replies)).flat().length;
+    document.getElementById('scene-count').textContent = scenes.length + ' 个场景 · ' + replyCount + ' 招';
+
+    const sceneButtons = scenes.map((scene, index) => {
+      const button = document.createElement('button');
+      button.className = 'scene';
+      button.type = 'button';
+      button.setAttribute('aria-controls', 'detail');
+      const number = document.createElement('span');
+      number.className = 'number';
+      number.textContent = String(index + 1).padStart(2, '0');
+      number.setAttribute('aria-hidden', 'true');
+      const title = document.createElement('span');
+      title.textContent = scene.title;
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      arrow.textContent = '›';
+      arrow.setAttribute('aria-hidden', 'true');
+      button.append(number, title, arrow);
+      button.addEventListener('click', () => {
+        sceneIndex = index;
+        render();
+        if (window.matchMedia('(max-width: 640px)').matches) {
+          detail.focus({ preventScroll: true });
+          detail.scrollIntoView({ block: 'start' });
+        }
+      });
+      sceneList.append(button);
+      return button;
+    });
+
+    function render() {
+      const scene = scenes[sceneIndex];
+      const isProactive = tone === 'proactive';
+      const replyGroup = isProactive ? strategy : tone;
+      sceneNumber.textContent = '场景 ' + String(sceneIndex + 1).padStart(2, '0');
+      sceneTitle.textContent = scene.title;
+      promptEl.textContent = scene.prompt;
+      toneHint.textContent = toneHints[replyGroup];
+      replies.textContent = '';
+      replies.append(...scene.replies[replyGroup].map(renderReply));
+      proactiveOptions.hidden = !isProactive;
+      toneButtons.find(button => button.dataset.tone === 'proactive').setAttribute('aria-expanded', String(isProactive));
+      sceneButtons.forEach((button, index) => button.setAttribute('aria-current', String(index === sceneIndex)));
+      toneButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tone === tone)));
+      strategyButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.strategy === strategy)));
+    }
+
+    function renderReply([label, line, step]) {
+      const card = replyTemplate.content.cloneNode(true);
+      const quote = card.querySelector('blockquote');
+      const copy = card.querySelector('.copy');
+      const status = card.querySelector('.status span');
+      card.querySelector('h3').textContent = label;
+      copy.setAttribute('aria-label', '复制：' + label);
+      quote.textContent = line;
+      card.querySelector('.action-text').textContent = step;
+      copy.addEventListener('click', () => copyReply(quote, copy, status));
+      return card;
+    }
+
+    toneButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (tone === button.dataset.tone) return;
+        tone = button.dataset.tone;
+        render();
+      });
+    });
+
+    strategyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (strategy === button.dataset.strategy) return;
+        strategy = button.dataset.strategy;
+        render();
+      });
+    });
+
+    function copyWithSelection(line, button) {
+      const field = document.createElement('textarea');
+      field.value = line;
+      field.setAttribute('readonly', '');
+      field.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+      document.body.append(field);
+      field.select();
+      field.setSelectionRange(0, line.length); // iOS needs this to select text in a readonly field
+      let copied = false;
+      try { copied = document.execCommand('copy'); } catch { /* blocked by the browser */ }
+      field.remove();
+      button.focus({ preventScroll: true });
+      return copied;
+    }
+
+    async function copyReply(quote, button, status) {
+      const line = quote.textContent;
+      replies.querySelectorAll('.status span').forEach(span => { span.textContent = ''; });
+      // Copy synchronously first so the click still counts as a user gesture (Safari/iOS).
+      let copied = copyWithSelection(line, button);
+      if (!copied && navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(line);
+          copied = true;
+        } catch { /* local files and strict settings can block this API */ }
+      }
+      if (!quote.isConnected) return;
+      if (!copied) {
+        const range = document.createRange();
+        range.selectNodeContents(quote);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+      status.textContent = copied ? '已复制' : '这句话已选中，请长按或右键手动复制。';
+    }
+
+    render();
+  </script>
+</body>
+</html>
